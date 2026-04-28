@@ -52,11 +52,6 @@ def create_subsystem(tx, name: str):
 
 
 def create_standard(tx, code: str, title: str):
-    tx.run(
-        "MERGE (:Standard {code: $code}) SET n.title = $title",  # n alias not needed for MERGE
-        code=code, title=title,
-    )
-    # cleaner with alias:
     tx.run("""
         MERGE (s:Standard {code: $code})
         SET s.title = $title

@@ -2,6 +2,12 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 import json
 from fastembed import TextEmbedding
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+os.environ["HF_TOKEN"] = os.environ.get("HF_TOKEN", "")
+
 
 print("starting vector store ingestion script...")
 
