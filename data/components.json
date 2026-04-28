@@ -1,0 +1,395 @@
+{
+  "components": [
+    {
+      "id": "brake_caliper_front",
+      "name": "Front Brake Caliper",
+      "subsystem": "Braking",
+      "description": "The front brake caliper acts as the hydraulic clamp that forces friction pads against the rotor. It is typically constructed from cast iron or forged aluminum for high rigidity and heat dissipation. Common failure modes include piston seizure due to corrosion and seal degradation leading to fluid leaks. It operates under extreme thermal loads, often exceeding 500 degrees Celsius during heavy braking. The component must withstand high hydraulic pressures to ensure consistent deceleration.",
+      "standards": [
+        {
+          "code": "ISO 26262",
+          "title": "Road vehicles - Functional safety",
+          "relevance": "Ensures the electronic control of the braking system fails safely."
+        },
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing for electrical and electronic equipment",
+          "relevance": "Governs the resistance to salt spray and corrosion for the caliper housing."
+        }
+      ],
+      "related_to": [
+        "brake_disc_ventilated",
+        "brake_pad_friction_material",
+        "brake_hose_reinforced"
+      ]
+    },
+    {
+      "id": "brake_disc_ventilated",
+      "name": "Ventilated Brake Disc",
+      "subsystem": "Braking",
+      "description": "The ventilated disc provides the friction surface for the braking system to convert kinetic energy into heat. It is usually made from grey cast iron for its excellent thermal conductivity and wear resistance. Key failure modes include thermal cracking and warping due to uneven heat distribution. It operates under extreme centrifugal forces and high temperature gradients. The internal vanes are designed to maximize airflow and prevent brake fade.",
+      "standards": [
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Defines the thermal cycling requirements for the rotor material."
+        }
+      ],
+      "related_to": [
+        "brake_caliper_front",
+        "brake_pad_friction_material",
+        "wheel_lug_nut"
+      ]
+    },
+    {
+      "id": "brake_pad_friction_material",
+      "name": "Brake Pad Friction Material",
+      "subsystem": "Braking",
+      "description": "Friction material is bonded to a steel backing plate to create the necessary grip against the brake disc. It is composed of a complex mix of ceramic, metallic, and organic binders. The primary failure mode is abrasive wear or glazing caused by overheating. It must operate effectively across a wide temperature range without losing its coefficient of friction. Vibration resistance is critical to prevent brake squeal during application.",
+      "standards": [
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Specifies the resistance to chemical contaminants like brake fluid."
+        }
+      ],
+      "related_to": [
+        "brake_caliper_front",
+        "brake_disc_ventilated"
+      ]
+    },
+    {
+      "id": "abs_modulator_valve",
+      "name": "ABS Modulator Valve",
+      "subsystem": "Braking",
+      "description": "The modulator valve regulates hydraulic pressure to the brakes to prevent wheel lock-up during emergency stops. It is constructed from high-precision machined aluminum and stainless steel internals. Failure modes include solenoid burnout or internal valve clogging from contaminated fluid. It operates under high-frequency pressure pulses and varying hydraulic loads. Precise timing is required to maintain vehicle stability and steerability.",
+      "standards": [
+        {
+          "code": "ISO 26262",
+          "title": "Road vehicles - Functional safety",
+          "relevance": "Critical for ensuring the ABS does not inadvertently release brake pressure."
+        },
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Ensures the valve operates correctly under extreme vibration."
+        }
+      ],
+      "related_to": [
+        "brake_hose_reinforced",
+        "ecu_engine_control"
+      ]
+    },
+    {
+      "id": "brake_hose_reinforced",
+      "name": "Reinforced Brake Hose",
+      "subsystem": "Braking",
+      "description": "This hose transports high-pressure brake fluid from the modulator to the calipers. It consists of a synthetic rubber inner tube reinforced with a braided textile or steel layer. Common failure modes include internal delamination or external abrasion leading to rupture. It must withstand high burst pressures and resist degradation from road salts and oils. Thermal expansion must be minimized to maintain a firm pedal feel.",
+      "standards": [
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Tests the hose for resistance to ozone and thermal aging."
+        }
+      ],
+      "related_to": [
+        "brake_caliper_front",
+        "abs_modulator_valve"
+      ]
+    },
+    {
+      "id": "cylinder_head_bolt",
+      "name": "Cylinder Head Bolt",
+      "subsystem": "Fasteners",
+      "description": "Cylinder head bolts provide the necessary clamping force to seal the cylinder head to the engine block. They are manufactured from high-tensile alloy steel with specific coatings to prevent galling. Failure modes typically involve plastic deformation or fatigue failure due to repeated thermal cycling. These bolts are subjected to extreme axial loads and high temperature gradients. Proper torque-to-yield specifications are essential to maintain seal integrity.",
+      "standards": [
+        {
+          "code": "ISO 898-1",
+          "title": "Mechanical properties of fasteners",
+          "relevance": "Defines the minimum tensile strength and yield point for the bolt."
+        },
+        {
+          "code": "ISO 4014",
+          "title": "Hexagon head bolts",
+          "relevance": "Specifies the dimensional tolerances for the bolt head and threads."
+        }
+      ],
+      "related_to": [
+        "cylinder_head_gasket",
+        "engine_mount_bolt",
+        "transmission_housing_screw"
+      ]
+    },
+    {
+      "id": "wheel_lug_nut",
+      "name": "Wheel Lug Nut",
+      "subsystem": "Fasteners",
+      "description": "Lug nuts secure the wheel rim to the hub assembly, ensuring the wheel remains centered. They are typically made from carbon steel with a zinc or chrome plating for corrosion resistance. Failure modes include thread stripping or fatigue cracking due to over-torquing. They are subjected to high shear loads and constant vibration during vehicle operation. Proper preload is critical to prevent wheel detachment.",
+      "standards": [
+        {
+          "code": "ISO 898-1",
+          "title": "Mechanical properties of fasteners",
+          "relevance": "Ensures the nut can withstand the required clamping torque."
+        }
+      ],
+      "related_to": [
+        "brake_disc_ventilated",
+        "chassis_structural_rivet"
+      ]
+    },
+    {
+      "id": "chassis_structural_rivet",
+      "name": "Chassis Structural Rivet",
+      "subsystem": "Fasteners",
+      "description": "Structural rivets are used to join aluminum or steel chassis members permanently. They are typically made from high-strength aluminum alloys or stainless steel. The primary failure mode is shear failure or loosening due to cyclic vibration. They operate under constant load and are exposed to harsh underbody environments including salt and moisture. They provide high joint stiffness compared to traditional bolts.",
+      "standards": [
+        {
+          "code": "ISO 898-1",
+          "title": "Mechanical properties of fasteners",
+          "relevance": "Governs the shear strength requirements for the rivet material."
+        }
+      ],
+      "related_to": [
+        "wheel_lug_nut",
+        "engine_mount_bolt"
+      ]
+    },
+    {
+      "id": "engine_mount_bolt",
+      "name": "Engine Mount Bolt",
+      "subsystem": "Fasteners",
+      "description": "These bolts secure the engine mounts to the vehicle chassis, dampening vibrations. They are constructed from high-grade alloy steel to handle dynamic loading. Failure modes include fatigue cracking caused by engine torque oscillations. They operate in a high-vibration environment and are exposed to engine oil and heat. High fatigue strength is required to prevent catastrophic engine displacement.",
+      "standards": [
+        {
+          "code": "ISO 898-1",
+          "title": "Mechanical properties of fasteners",
+          "relevance": "Ensures the bolt grade matches the dynamic load requirements."
+        },
+        {
+          "code": "ISO 4014",
+          "title": "Hexagon head bolts",
+          "relevance": "Standardizes the head geometry for automated assembly tools."
+        }
+      ],
+      "related_to": [
+        "cylinder_head_bolt",
+        "chassis_structural_rivet"
+      ]
+    },
+    {
+      "id": "transmission_housing_screw",
+      "name": "Transmission Housing Screw",
+      "subsystem": "Fasteners",
+      "description": "These screws hold the transmission casing halves together, preventing fluid leaks. They are usually made of zinc-plated steel to resist corrosion from transmission fluid. Failure modes include hydrogen embrittlement or thread stripping during assembly. They are subjected to moderate thermal expansion and constant vibration. Consistent torque is required to ensure the housing gasket remains compressed.",
+      "standards": [
+        {
+          "code": "ISO 898-1",
+          "title": "Mechanical properties of fasteners",
+          "relevance": "Defines the hardness and tensile properties of the screw."
+        }
+      ],
+      "related_to": [
+        "cylinder_head_bolt",
+        "transmission_oil_pan_gasket"
+      ]
+    },
+    {
+      "id": "ecu_engine_control",
+      "name": "Engine Control Unit (ECU)",
+      "subsystem": "Electrical",
+      "description": "The ECU serves as the central processing hub for managing fuel injection and ignition timing. It consists of a multi-layer PCB housed in a cast aluminum enclosure for heat dissipation. Key failure modes include solder joint fatigue from vibration and thermal throttling of the processor. It operates in a harsh environment with temperatures ranging from -40 to 125 degrees Celsius. The unit is critical for meeting emissions and performance standards.",
+      "standards": [
+        {
+          "code": "ISO 26262",
+          "title": "Road vehicles - Functional safety",
+          "relevance": "Mandates ASIL ratings for the software and hardware architecture."
+        },
+        {
+          "code": "IEC 60529",
+          "title": "Degrees of protection provided by enclosures",
+          "relevance": "Ensures the ECU housing is water and dust tight (IP rating)."
+        },
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Defines the electrical transient and temperature tests."
+        }
+      ],
+      "related_to": [
+        "wiring_harness_main",
+        "abs_modulator_valve",
+        "battery_management_system"
+      ]
+    },
+    {
+      "id": "wiring_harness_main",
+      "name": "Main Wiring Harness",
+      "subsystem": "Electrical",
+      "description": "The main harness distributes power and signals throughout the vehicle's electrical system. It is constructed from stranded copper wires with cross-linked polyethylene (XLPE) insulation. Common failure modes include insulation chafing and connector pin corrosion. It is exposed to extreme temperature swings and constant mechanical vibration. Proper routing is essential to prevent electromagnetic interference (EMI).",
+      "standards": [
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Governs the resistance of the insulation to automotive fluids."
+        },
+        {
+          "code": "IEC 60529",
+          "title": "Degrees of protection provided by enclosures",
+          "relevance": "Ensures connector seals prevent moisture ingress."
+        }
+      ],
+      "related_to": [
+        "ecu_engine_control",
+        "alternator_voltage_regulator",
+        "electric_power_steering_motor"
+      ]
+    },
+    {
+      "id": "battery_management_system",
+      "name": "Battery Management System (BMS)",
+      "subsystem": "Electrical",
+      "description": "The BMS monitors the state of charge and cell voltage in high-voltage batteries. It uses a combination of sensing circuits and microcontrollers on a specialized PCB. Failure modes include sensor drift and MOSFET failure in the balancing circuits. It operates under high electrical loads and must manage thermal runaway risks. Precise voltage monitoring is required to prevent overcharging and deep discharge.",
+      "standards": [
+        {
+          "code": "ISO 26262",
+          "title": "Road vehicles - Functional safety",
+          "relevance": "Critical for preventing hazardous battery conditions."
+        },
+        {
+          "code": "IEC 60529",
+          "title": "Degrees of protection provided by enclosures",
+          "relevance": "Ensures the BMS is protected from electrolyte leaks."
+        }
+      ],
+      "related_to": [
+        "ecu_engine_control",
+        "wiring_harness_main"
+      ]
+    },
+    {
+      "id": "alternator_voltage_regulator",
+      "name": "Alternator Voltage Regulator",
+      "subsystem": "Electrical",
+      "description": "The regulator maintains a constant output voltage from the alternator to the battery. It is built using semiconductor components and an inductive coil. Failure modes include diode failure and thermal breakdown of the regulator circuit. It operates in the high-heat environment of the engine bay. It must resist voltage spikes and electrical noise to protect other vehicle electronics.",
+      "standards": [
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Tests for resistance to high-frequency electrical transients."
+        }
+      ],
+      "related_to": [
+        "wiring_harness_main",
+        "battery_management_system"
+      ]
+    },
+    {
+      "id": "electric_power_steering_motor",
+      "name": "Electric Power Steering Motor",
+      "subsystem": "Electrical",
+      "description": "This brushless DC motor provides steering assistance by applying torque to the steering rack. It consists of permanent magnets and copper windings housed in a sealed aluminum casing. Failure modes include winding insulation breakdown and bearing wear. It operates under high peak loads and must respond instantly to driver input. Thermal management is critical to prevent performance degradation during tight maneuvers.",
+      "standards": [
+        {
+          "code": "ISO 26262",
+          "title": "Road vehicles - Functional safety",
+          "relevance": "Ensures steering assistance does not cause unintended steering inputs."
+        },
+        {
+          "code": "ISO 16750",
+          "title": "Environmental conditions and testing",
+          "relevance": "Validates the motor's operation under extreme cold and heat."
+        }
+      ],
+      "related_to": [
+        "wiring_harness_main",
+        "ecu_engine_control"
+      ]
+    },
+    {
+      "id": "cylinder_head_gasket",
+      "name": "Cylinder Head Gasket",
+      "subsystem": "Sealing",
+      "description": "The cylinder head gasket provides a critical seal between the engine block and the cylinder head. It is usually constructed from multi-layer steel (MLS) with specialized elastomer coatings. Failure modes include 'blowout' where combustion gases leak between cylinders or coolant contamination. It operates under immense pressure and extreme thermal expansion cycles. Corrosion from coolant additives can degrade the material over time.",
+      "standards": [
+        {
+          "code": "ISO 3601",
+          "title": "Rubber seals - Vocabulary",
+          "relevance": "Defines the properties of the elastomer coatings used on the steel layers."
+        }
+      ],
+      "related_to": [
+        "cylinder_head_bolt",
+        "crankshaft_oil_seal",
+        "fuel_injector_o_ring"
+      ]
+    },
+    {
+      "id": "crankshaft_oil_seal",
+      "name": "Crankshaft Oil Seal",
+      "subsystem": "Sealing",
+      "description": "This seal prevents engine oil from leaking out of the crankcase along the crankshaft. It is typically made from Nitrile (NBR) or Fluorocarbon (FKM) rubber with a metal reinforcement ring. Common failure modes include lip wear and hardening due to thermal aging. It operates under high rotational speeds and must maintain a seal despite crankshaft eccentricity. Oil compatibility is essential to prevent seal swelling.",
+      "standards": [
+        {
+          "code": "ISO 3601",
+          "title": "Rubber seals - Vocabulary",
+          "relevance": "Specifies the material requirements for oil-resistant elastomers."
+        }
+      ],
+      "related_to": [
+        "cylinder_head_gasket",
+        "transmission_oil_pan_gasket"
+      ]
+    },
+    {
+      "id": "door_weatherstrip",
+      "name": "Door Weatherstrip",
+      "subsystem": "Sealing",
+      "description": "Weatherstrips seal the cabin from external air, water, and noise. They are manufactured from EPDM rubber for its excellent weather and UV resistance. Failure modes include compression set (loss of elasticity) and tearing. They operate under constant compression and are exposed to extreme outdoor temperatures. Effective sealing is required to maintain cabin acoustics and prevent water ingress.",
+      "standards": [
+        {
+          "code": "ISO 3601",
+          "title": "Rubber seals - Vocabulary",
+          "relevance": "Defines the compression and recovery standards for EPDM seals."
+        }
+      ],
+      "related_to": [
+        "chassis_structural_rivet",
+        "wiring_harness_main"
+      ]
+    },
+    {
+      "id": "fuel_injector_o_ring",
+      "name": "Fuel Injector O-Ring",
+      "subsystem": "Sealing",
+      "description": "The O-ring ensures a leak-proof seal between the fuel injector and the intake manifold. It is made from Viton or other high-performance fluoropolymers to resist chemical attack from fuel. Failure modes include cracking due to dryness or chemical degradation. It operates under high fuel pressure and varying temperatures. Precision fit is required to prevent vacuum leaks that would affect engine idling.",
+      "standards": [
+        {
+          "code": "ISO 3601",
+          "title": "Rubber seals - Vocabulary",
+          "relevance": "Governs the chemical resistance specifications for fuel-contact seals."
+        }
+      ],
+      "related_to": [
+        "cylinder_head_gasket",
+        "crankshaft_oil_seal"
+      ]
+    },
+    {
+      "id": "transmission_oil_pan_gasket",
+      "name": "Transmission Oil Pan Gasket",
+      "subsystem": "Sealing",
+      "description": "This gasket seals the oil pan to the transmission housing to prevent lubricant leakage. It is often made from cork-rubber composites or molded silicone. Failure modes include leakage due to improper torque or material degradation from heat. It operates under low pressure but must withstand constant exposure to hot transmission fluid. Thermal expansion must be matched to the aluminum housing to prevent gaps.",
+      "standards": [
+        {
+          "code": "ISO 3601",
+          "title": "Rubber seals - Vocabulary",
+          "relevance": "Specifies the compression set limits for silicone gaskets."
+        }
+      ],
+      "related_to": [
+        "transmission_housing_screw",
+        "crankshaft_oil_seal"
+      ]
+    }
+  ]
+}
