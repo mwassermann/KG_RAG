@@ -1,3 +1,13 @@
+# Environment
 .env
-/__pychache__/
-/agents/__pychache__/
+
+# Python cache (matches everywhere in the project)
+__pycache__/
+*.pyc
+*.pyo
+
+# QDrant local data
+qdrant_data/
+
+# Neo4j local data (if ever used outside Docker)
+neo4j_data/

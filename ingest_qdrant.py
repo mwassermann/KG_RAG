@@ -1,9 +1,13 @@
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams, PointStruct
+from qdrant_client.models import (
+    Distance, VectorParams, PointStruct,
+    SparseVectorParams, SparseIndexParams, SparseVector,
+)
+from fastembed import TextEmbedding, SparseTextEmbedding
 import json
-from fastembed import TextEmbedding
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 os.environ["HF_TOKEN"] = os.environ.get("HF_TOKEN", "")
@@ -24,9 +28,17 @@ client = QdrantClient(path="./qdrant_data")
 existing = [c.name for c in client.get_collections().collections]
 if "components" not in existing:
     client.create_collection(
-        collection_name="components",
-        vectors_config=VectorParams(size=emb_dim, distance=Distance.COSINE),
-    )
+    collection_name="components",
+    vectors_config={
+        "dense": VectorParams(size=emb_dim, distance=Distance.COSINE),
+    },
+    sparse_vectors_config={
+        "sparse": SparseVectorParams(
+            index=SparseIndexParams(on_disk=False)
+        ),
+    },
+)
+
     print("Collection created")
 else:
     print("Collection already exists, skipping creation")
@@ -47,23 +59,33 @@ for component in json1_data['components']:
 
 # embed descriptions
 embedding_model = TextEmbedding()
-embeddings_generator = embedding_model.embed(documents)
-embeddings_list = list(embeddings_generator)
-assert len(embeddings_list[0]) == emb_dim
-print(f"Embeddings are of size: {len(embeddings_list[0])}")
+sparse_model = SparseTextEmbedding("Qdrant/bm25")
 
-
-# prepare collection inputs
+dense_vecs  = list(embedding_model.embed(documents))
+sparse_vecs = list(sparse_model.embed(documents))
 points_list = []
-i = 0
 
-for component, vector in zip(json1_data['components'],embeddings_list):
-    entry = PointStruct(id = i, vector = vector,
-                        payload = {"id": component["id"], "name": component['name'],
-                                   "subsystem": component["subsystem"], "description": component["description"] 
-                                   })
+for i, (component, dvec, svec) in enumerate(
+    zip(json1_data['components'], dense_vecs, sparse_vecs)
+):
+    entry = PointStruct(
+        id=i,
+        vector={
+            "dense": dvec.tolist(),
+            "sparse": SparseVector(
+                indices=svec.indices.tolist(),
+                values=svec.values.tolist(),
+            ),
+        },
+        payload={
+            "id":          component["id"],
+            "name":        component["name"],
+            "subsystem":   component["subsystem"],
+            "description": component["description"],
+        }
+    )
     points_list.append(entry)
-    i +=1
+
     
 
 # add to collection
@@ -75,18 +97,33 @@ print("Entries successfully added to Vector Store. Now running test query...")
 
 # test query
 query = "gasket for oil pan to transmission"
-query_vector = list(embedding_model.embed(query))[0]
+dense_query_vec  = list(embedding_model.embed(query))[0]
+sparse_query_vec = list(sparse_model.embed(query))[0]
 
-results = client.query_points(
+# dense test
+dense_results = client.query_points(
     collection_name="components",
-    query=query_vector,   
+    query=dense_query_vec.tolist(),
+    using="dense",
     limit=5,
 )
 
-print("Results of the test query:\n")
-for r in results.points:
-    print(r.id, r.score, r.payload)
+print("\nDense (semantic) results:")
+for r in dense_results.points:
+    print(f"  {r.score:.3f}  {r.payload['name']}")
 
+# sparse test
+sparse_results = client.query_points(
+    collection_name="components",
+    query=SparseVector(
+        indices=sparse_query_vec.indices.tolist(),
+        values=sparse_query_vec.values.tolist(),
+    ),
+    using="sparse",
+    limit=5,
+)
 
-client.close()
+print("\nSparse (BM25) results:")
+for r in sparse_results.points:
+    print(f"  {r.score:.3f}  {r.payload['name']}")
 print("Client closed cleanly.")
